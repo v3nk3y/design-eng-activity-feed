@@ -30,6 +30,15 @@ export function formatFeedDate(value: string) {
   return formatter.format(date)
 }
 
+/** Builds the <time> value from local parts — toISOString() converts to UTC and can land on the day before. */
+export function serializeFeedDate(value: string) {
+  const date = parseFeedDate(value)
+  if (!date) return undefined
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${date.getFullYear()}-${month}-${day}`
+}
+
 /** Sorts on initiatedAt, an ISO instant on every row, rather than the two-format date field. */
 export function sortNewestFirst(transactions: Transaction[]) {
   return [...transactions].sort((a, b) => Date.parse(b.initiatedAt) - Date.parse(a.initiatedAt))

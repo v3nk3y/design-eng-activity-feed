@@ -1,20 +1,23 @@
 .transaction-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
+  align-items: center;
+  gap: 16px;
   width: 100%;
-  padding: 2px 2px;
+  padding: 16px;
   font: inherit;
   color: inherit;
   text-align: left;
   background: none;
   border: 0;
-  border-bottom: 1px solid #eee;
   cursor: pointer;
 }
 
+.transaction-row:hover {
+  background: var(--hover);
+}
+
 .transaction-row:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--focus);
   outline-offset: -2px;
 }
 
@@ -25,31 +28,31 @@
 
 .transaction-row__merchant {
   display: block;
-  font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
-.transaction-row__category {
+.transaction-row__meta {
   display: block;
-  font-size: 16px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.transaction-row__category::after {
+  content: ' · ';
 }
 
 .transaction-row__aside {
-  text-align: right;
-}
-
-.transaction-row__date {
-  display: block;
-  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
 }
 
 .transaction-row__amount {
-  display: block;
-  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
 }
 
 .transaction-row__status {
-  width: 100%;
-  font-size: 16px;
   text-transform: uppercase;
 }
