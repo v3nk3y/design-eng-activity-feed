@@ -1,0 +1,48 @@
+.app {
+  min-height: 100vh;
+  background: #f0f2f5;
+}
+
+.app-body {
+  padding: 24px 16px 48px;
+}
+
+.app-header {
+  max-width: 720px;
+  margin: 0 auto 20px;
+}
+
+.app-header__eyebrow {
+  margin: 0;
+  font-size: 16px;
+}
+
+.app-header__title {
+  margin: 4px 0 8px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.app-header__balance {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.app-main {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.app-placeholder {
+  padding: 24px;
+  text-align: center;
+  color: #666;
+  background: #fff;
+  border: 1px solid #ddd;
+}
+
+.app-placeholder--error {
+  color: #c00;
+}

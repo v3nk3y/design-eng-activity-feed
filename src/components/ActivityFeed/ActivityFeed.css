@@ -1,0 +1,57 @@
+.activity-feed {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 4px;
+  width: 720px;
+}
+
+.activity-feed h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.transaction-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 2px 2px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.transaction-row:focus {
+  outline: none;
+}
+
+.transaction-row__main {
+  flex: 1;
+  min-width: 0;
+}
+
+.transaction-row__merchant {
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.transaction-row__category {
+  font-size: 16px;
+}
+
+.transaction-row__aside {
+  text-align: right;
+}
+
+.transaction-row__date {
+  font-size: 16px;
+}
+
+.transaction-row__amount {
+  font-size: 16px;
+}
+
+.transaction-row__status {
+  width: 100%;
+  font-size: 16px;
+  text-transform: uppercase;
+}
