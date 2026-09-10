@@ -5,22 +5,35 @@
   width: 720px;
 }
 
-.activity-feed h3 {
+.activity-feed h2 {
   font-size: 16px;
   font-weight: 600;
+}
+
+.activity-feed__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .transaction-row {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+  width: 100%;
   padding: 2px 2px;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
   border-bottom: 1px solid #eee;
   cursor: pointer;
 }
 
-.transaction-row:focus {
-  outline: none;
+.transaction-row:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: -2px;
 }
 
 .transaction-row__main {
@@ -29,12 +42,14 @@
 }
 
 .transaction-row__merchant {
+  display: block;
   font-size: 16px;
   font-weight: 500;
   white-space: nowrap;
 }
 
 .transaction-row__category {
+  display: block;
   font-size: 16px;
 }
 
@@ -43,10 +58,12 @@
 }
 
 .transaction-row__date {
+  display: block;
   font-size: 16px;
 }
 
 .transaction-row__amount {
+  display: block;
   font-size: 16px;
 }
 

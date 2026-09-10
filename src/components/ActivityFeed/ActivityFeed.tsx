@@ -17,27 +17,31 @@ export function ActivityFeed({ transactions }: ActivityFeedProps) {
 
   return (
     <div className='activity-feed'>
-      <h3>Activity</h3>
+      <h2>Activity</h2>
 
-      {transactions.map((transaction, index) => (
-        <div
-          key={index}
-          className='transaction-row'
-          onClick={() => alert(`Transaction: ${transaction.id}`)}
-        >
-          <div className='transaction-row__main'>
-            <div className='transaction-row__merchant'>{transaction.merchant}</div>
-            <div className='transaction-row__category'>{transaction.category}</div>
-          </div>
+      <ul className='activity-feed__list'>
+        {transactions.map((transaction) => (
+          <li key={transaction.id}>
+            <button
+              type='button'
+              className='transaction-row'
+              onClick={() => alert(`Transaction: ${transaction.id}`)}
+            >
+              <span className='transaction-row__main'>
+                <span className='transaction-row__merchant'>{transaction.merchant}</span>
+                <span className='transaction-row__category'>{transaction.category}</span>
+              </span>
 
-          <div className='transaction-row__aside'>
-            <div className='transaction-row__date'>{transaction.date}</div>
-            <div className='transaction-row__amount'>{formatAmount(transaction.amount)}</div>
-          </div>
+              <span className='transaction-row__aside'>
+                <span className='transaction-row__date'>{transaction.date}</span>
+                <span className='transaction-row__amount'>{formatAmount(transaction.amount)}</span>
+              </span>
 
-          {transaction.status === 'pending' && <span className='transaction-row__status'>pending</span>}
-        </div>
-      ))}
+              {transaction.status === 'pending' && <span className='transaction-row__status'>pending</span>}
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
