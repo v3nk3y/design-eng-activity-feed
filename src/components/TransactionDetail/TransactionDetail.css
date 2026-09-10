@@ -16,6 +16,89 @@
   border-left: 1px solid var(--line);
 }
 
+@keyframes detail-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes detail-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes detail-panel-in {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes detail-panel-out {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes detail-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes detail-sheet-out {
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.detail-overlay[data-state='open'] {
+  animation: detail-fade-in 180ms ease-out;
+}
+
+.detail-overlay[data-state='closed'] {
+  animation: detail-fade-out 160ms ease-in;
+}
+
+.detail-panel[data-state='open'] {
+  animation: detail-panel-in 220ms ease-out;
+}
+
+.detail-panel[data-state='closed'] {
+  animation: detail-panel-out 180ms ease-in;
+}
+
+/* Below 768px the panel is a bottom sheet, so it arrives from the edge it rests on. */
+@media (max-width: 767px) {
+  .detail-panel {
+    top: auto;
+    left: 0;
+    width: 100%;
+    max-height: calc(100dvh - 24px);
+    border-top: 1px solid var(--line);
+    border-left: 0;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .detail-panel[data-state='open'] {
+    animation-name: detail-sheet-in;
+  }
+
+  .detail-panel[data-state='closed'] {
+    animation-name: detail-sheet-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detail-panel[data-state='open'] {
+    animation-name: detail-fade-in;
+  }
+
+  .detail-panel[data-state='closed'] {
+    animation-name: detail-fade-out;
+  }
+}
+
 .detail-panel__header {
   display: flex;
   align-items: center;

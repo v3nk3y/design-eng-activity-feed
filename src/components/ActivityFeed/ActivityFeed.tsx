@@ -11,9 +11,15 @@ type ActivityFeedProps = {
 
 export function ActivityFeed({ transactions }: ActivityFeedProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [detailOpen, setDetailOpen] = useState(false);
 
   const sorted = useMemo(() => sortNewestFirst(transactions), [transactions]);
   const selected = transactions.find((transaction) => transaction.id === selectedId);
+
+  const handleSelect = (id: string) => {
+    setSelectedId(id);
+    setDetailOpen(true);
+  };
 
   return (
     <div className='activity-feed'>
@@ -25,13 +31,17 @@ export function ActivityFeed({ transactions }: ActivityFeedProps) {
         <ul className='activity-feed__list'>
           {sorted.map((transaction) => (
             <li key={transaction.id}>
-              <TransactionRow transaction={transaction} onSelect={setSelectedId} />
+              <TransactionRow transaction={transaction} onSelect={handleSelect} />
             </li>
           ))}
         </ul>
       )}
 
-      <TransactionDetail transaction={selected} onClose={() => setSelectedId(null)} />
+      <TransactionDetail
+        transaction={selected}
+        open={detailOpen && selected !== undefined}
+        onOpenChange={setDetailOpen}
+      />
     </div>
   );
 }

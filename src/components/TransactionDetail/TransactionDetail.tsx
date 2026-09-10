@@ -12,16 +12,13 @@ import {
 
 type TransactionDetailProps = {
   transaction: Transaction | undefined
-  onClose: () => void
+  open: boolean
+  onOpenChange: (open: boolean) => void
 }
 
-export function TransactionDetail({ transaction, onClose }: TransactionDetailProps) {
-  const handleOpenChange = (open: boolean) => {
-    if (!open) onClose()
-  }
-
+export function TransactionDetail({ transaction, open, onOpenChange }: TransactionDetailProps) {
   return (
-    <Dialog.Root open={transaction !== undefined} onOpenChange={handleOpenChange}>
+    <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className='detail-overlay' />
 
