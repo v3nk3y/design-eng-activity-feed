@@ -90,3 +90,23 @@
   margin: 8px 0 0;
   color: var(--muted);
 }
+
+.detail-panel__facts {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 12px 16px;
+  margin: 24px 0 0;
+}
+
+.detail-panel__facts dt {
+  color: var(--muted);
+}
+
+.detail-panel__facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.detail-panel__type {
+  text-transform: capitalize;
+}

@@ -2,7 +2,13 @@ import * as Dialog from '@radix-ui/react-dialog'
 import './TransactionDetail.css'
 import type { Transaction } from '../../types/transaction'
 import { StatusBadge } from '../StatusBadge/StatusBadge'
-import { amountTone, formatAmount } from '../../utils/transactions'
+import {
+  amountTone,
+  formatAmount,
+  formatPaymentMethod,
+  formatTimestamp,
+  maskAccount,
+} from '../../utils/transactions'
 
 type TransactionDetailProps = {
   transaction: Transaction | undefined
@@ -40,6 +46,40 @@ export function TransactionDetail({ transaction, onClose }: TransactionDetailPro
                 <Dialog.Description className='detail-panel__description'>
                   {transaction.description}
                 </Dialog.Description>
+
+                <dl className='detail-panel__facts'>
+                  <dt>Type</dt>
+                  <dd className='detail-panel__type'>{transaction.type}</dd>
+
+                  <dt>Method</dt>
+                  <dd>{formatPaymentMethod(transaction.paymentMethod)}</dd>
+
+                  <dt>From</dt>
+                  <dd>{maskAccount(transaction.sourceAccount)}</dd>
+
+                  <dt>To</dt>
+                  <dd>{maskAccount(transaction.destinationAccount)}</dd>
+
+                  <dt>Reference</dt>
+                  <dd>{transaction.referenceNumber}</dd>
+
+                  <dt>Initiated</dt>
+                  <dd>{formatTimestamp(transaction.initiatedAt)}</dd>
+
+                  {transaction.postedAt && (
+                    <>
+                      <dt>Posted</dt>
+                      <dd>{formatTimestamp(transaction.postedAt)}</dd>
+                    </>
+                  )}
+
+                  {transaction.memo && (
+                    <>
+                      <dt>Memo</dt>
+                      <dd>{transaction.memo}</dd>
+                    </>
+                  )}
+                </dl>
               </div>
             </>
           )}

@@ -1,4 +1,9 @@
-import type { Transaction, TransactionSummary } from '../types/transaction'
+import type {
+  PaymentMethod,
+  Transaction,
+  TransactionAccount,
+  TransactionSummary,
+} from '../types/transaction'
 
 const currency = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -15,6 +20,24 @@ export function amountTone(transaction: TransactionSummary) {
   if (transaction.status === 'failed') return 'failed'
   if (transaction.amount > 0) return 'credit'
   return 'debit'
+}
+
+const paymentMethodLabels: Record<PaymentMethod, string> = {
+  ach: 'ACH',
+  wire: 'Wire',
+  card: 'Card',
+  internal_transfer: 'Internal transfer',
+  check: 'Check',
+}
+
+export function formatPaymentMethod(method: PaymentMethod) {
+  return paymentMethodLabels[method]
+}
+
+/** The fixture plants '----' as a last four. Masking that would dress a placeholder up as an account number. */
+export function maskAccount(account: TransactionAccount) {
+  if (!/^\d{4}$/.test(account.lastFour)) return account.name
+  return `${account.name} \u2022\u2022${account.lastFour}`
 }
 
 /** Date-only ISO strings are read as UTC by new Date(), a day early here. Build those locally. */
@@ -44,6 +67,21 @@ export function serializeFeedDate(value: string) {
   const month = String(date.getMonth() + 1).padStart(2, '0')
   const day = String(date.getDate()).padStart(2, '0')
   return `${date.getFullYear()}-${month}-${day}`
+}
+
+const timestamp = new Intl.DateTimeFormat('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+  hour: 'numeric',
+  minute: '2-digit',
+  timeZoneName: 'short',
+})
+
+/** Names the zone, so it's visible that these render in the viewer's timezone rather than the account's. */
+export function formatTimestamp(value: string) {
+  const date = new Date(value)
+  return Number.isNaN(date.getTime()) ? value : timestamp.format(date)
 }
 
 /** Sorts on initiatedAt, an ISO instant on every row, rather than the two-format date field. */
