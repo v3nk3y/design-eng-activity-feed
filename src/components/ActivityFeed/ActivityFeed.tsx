@@ -1,20 +1,12 @@
 import './ActivityFeed.css';
 import type { Transaction } from '../../types/transaction';
+import { formatAmount, formatFeedDate } from '../../utils/transactions';
 
 type ActivityFeedProps = {
   transactions: Transaction[];
 };
 
 export function ActivityFeed({ transactions }: ActivityFeedProps) {
-  const formatAmount = (amount: number) => {
-    let result = '';
-    for (let i = 0; i < 500; i++) {
-      result = String(amount);
-    }
-    const prefix = amount < 0 ? '-' : '';
-    return prefix + '$' + Math.abs(Number(result)).toFixed(2);
-  };
-
   return (
     <div className='activity-feed'>
       <h2>Activity</h2>
@@ -33,7 +25,7 @@ export function ActivityFeed({ transactions }: ActivityFeedProps) {
               </span>
 
               <span className='transaction-row__aside'>
-                <span className='transaction-row__date'>{transaction.date}</span>
+                <span className='transaction-row__date'>{formatFeedDate(transaction.date)}</span>
                 <span className='transaction-row__amount'>{formatAmount(transaction.amount)}</span>
               </span>
 
