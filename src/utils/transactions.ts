@@ -1,4 +1,4 @@
-import type { Transaction } from '../types/transaction'
+import type { Transaction, TransactionSummary } from '../types/transaction'
 
 const currency = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -8,6 +8,13 @@ const currency = new Intl.NumberFormat('en-US', {
 
 export function formatAmount(amount: number) {
   return currency.format(amount)
+}
+
+/** Failure outranks direction: a failed credit never arrived, so it shouldn't read as money in. */
+export function amountTone(transaction: TransactionSummary) {
+  if (transaction.status === 'failed') return 'failed'
+  if (transaction.amount > 0) return 'credit'
+  return 'debit'
 }
 
 /** Date-only ISO strings are read as UTC by new Date(), a day early here. Build those locally. */

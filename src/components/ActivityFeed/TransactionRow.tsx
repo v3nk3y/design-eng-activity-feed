@@ -1,6 +1,6 @@
 import './TransactionRow.css'
 import type { TransactionSummary } from '../../types/transaction'
-import { formatAmount, formatFeedDate, serializeFeedDate } from '../../utils/transactions'
+import { amountTone, formatAmount, formatFeedDate, serializeFeedDate } from '../../utils/transactions'
 
 type TransactionRowProps = {
   transaction: TransactionSummary
@@ -25,7 +25,9 @@ export function TransactionRow({ transaction }: TransactionRowProps) {
       </span>
 
       <span className='transaction-row__aside'>
-        <span className='transaction-row__amount'>{formatAmount(transaction.amount)}</span>
+        <span className={`transaction-row__amount transaction-row__amount--${amountTone(transaction)}`}>
+          {formatAmount(transaction.amount)}
+        </span>
         {transaction.status === 'pending' && <span className='transaction-row__status'>pending</span>}
       </span>
     </button>

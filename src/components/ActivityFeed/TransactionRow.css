@@ -53,6 +53,19 @@
   font-variant-numeric: tabular-nums;
 }
 
+.transaction-row__amount--debit {
+  color: var(--text);
+}
+
+.transaction-row__amount--credit {
+  color: var(--credit);
+}
+
+.transaction-row__amount--failed {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
 .transaction-row__status {
   text-transform: uppercase;
 }
