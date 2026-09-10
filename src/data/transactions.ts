@@ -170,8 +170,8 @@ export function createMockTransaction(): Transaction {
   const n = Math.floor(Math.random() * MOCK_MERCHANTS.length);
   const merchant = MOCK_MERCHANTS[n]!;
   const amount = Math.random() > 0.35 ? -(5 + Math.floor(Math.random() * 400)) : 200 + Math.floor(Math.random() * 3000);
-  const day = String(Math.floor(Math.random() * 28) + 1).padStart(2, '0');
-  const date = `2026-05-${day}`;
+  const now = new Date();
+  const date = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
   const status = MOCK_STATUSES[Math.floor(Math.random() * MOCK_STATUSES.length)]!;
   const id = `txn_dev_${Date.now()}`;
 
