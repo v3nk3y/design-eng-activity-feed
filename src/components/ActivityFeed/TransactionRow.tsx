@@ -1,5 +1,6 @@
 import './TransactionRow.css'
 import type { TransactionSummary } from '../../types/transaction'
+import { StatusBadge } from '../StatusBadge/StatusBadge'
 import { amountTone, formatAmount, formatFeedDate, serializeFeedDate } from '../../utils/transactions'
 
 type TransactionRowProps = {
@@ -28,7 +29,7 @@ export function TransactionRow({ transaction }: TransactionRowProps) {
         <span className={`transaction-row__amount transaction-row__amount--${amountTone(transaction)}`}>
           {formatAmount(transaction.amount)}
         </span>
-        {transaction.status === 'pending' && <span className='transaction-row__status'>pending</span>}
+        {transaction.status !== 'posted' && <StatusBadge status={transaction.status} />}
       </span>
     </button>
   )

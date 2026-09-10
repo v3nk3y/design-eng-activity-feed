@@ -5,6 +5,10 @@
   --surface: #fff;
   --hover: #f5f5f5;
   --credit: #15803d;
+  --warning: #92400e;
+  --warning-bg: #fef3c7;
+  --danger: #b42318;
+  --danger-bg: #fee4e2;
   --focus: #2563eb;
 }
 

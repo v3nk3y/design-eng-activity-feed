@@ -65,7 +65,3 @@
   color: var(--muted);
   text-decoration: line-through;
 }
-
-.transaction-row__status {
-  text-transform: uppercase;
-}
