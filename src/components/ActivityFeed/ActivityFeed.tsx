@@ -1,18 +1,20 @@
 import './ActivityFeed.css';
 import type { Transaction } from '../../types/transaction';
-import { formatAmount, formatFeedDate } from '../../utils/transactions';
+import { formatAmount, formatFeedDate, sortNewestFirst } from '../../utils/transactions';
 
 type ActivityFeedProps = {
   transactions: Transaction[];
 };
 
 export function ActivityFeed({ transactions }: ActivityFeedProps) {
+  const sorted = sortNewestFirst(transactions);
+
   return (
     <div className='activity-feed'>
       <h2>Activity</h2>
 
       <ul className='activity-feed__list'>
-        {transactions.map((transaction) => (
+        {sorted.map((transaction) => (
           <li key={transaction.id}>
             <button
               type='button'

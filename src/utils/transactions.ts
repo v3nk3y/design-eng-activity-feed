@@ -1,3 +1,5 @@
+import type { Transaction } from '../types/transaction'
+
 const currency = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -26,4 +28,9 @@ export function formatFeedDate(value: string) {
   if (!date) return value
   const formatter = date.getFullYear() === new Date().getFullYear() ? shortDate : shortDateWithYear
   return formatter.format(date)
+}
+
+/** Sorts on initiatedAt, an ISO instant on every row, rather than the two-format date field. */
+export function sortNewestFirst(transactions: Transaction[]) {
+  return [...transactions].sort((a, b) => Date.parse(b.initiatedAt) - Date.parse(a.initiatedAt))
 }
