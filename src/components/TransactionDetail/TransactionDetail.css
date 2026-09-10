@@ -159,12 +159,6 @@
   border-top: 1px solid var(--line);
 }
 
-.detail-panel__eligibility {
-  margin: 0 0 12px;
-  font-size: 13px;
-  color: var(--muted);
-}
-
 .detail-panel__actions {
   display: flex;
   flex-direction: column;
@@ -190,12 +184,6 @@
   color: var(--surface);
   background: var(--text);
   border: 1px solid transparent;
-}
-
-.detail-panel__dispute:disabled {
-  color: var(--muted);
-  background: var(--hover);
-  cursor: not-allowed;
 }
 
 .detail-panel__dismiss {

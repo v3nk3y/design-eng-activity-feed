@@ -16,6 +16,7 @@ export function TransactionRow({ transaction, onSelect }: TransactionRowProps) {
     <button
       type='button'
       className='transaction-row'
+      aria-haspopup='dialog'
       onClick={() => onSelect(transaction.id)}
     >
       <span className='transaction-row__main'>
