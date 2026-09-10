@@ -14,13 +14,17 @@ export function ActivityFeed({ transactions }: ActivityFeedProps) {
     <div className='activity-feed'>
       <h2>Activity</h2>
 
-      <ul className='activity-feed__list'>
-        {sorted.map((transaction) => (
-          <li key={transaction.id}>
-            <TransactionRow transaction={transaction} />
-          </li>
-        ))}
-      </ul>
+      {transactions.length === 0 ? (
+        <p className='activity-feed__empty'>No transactions yet.</p>
+      ) : (
+        <ul className='activity-feed__list'>
+          {sorted.map((transaction) => (
+            <li key={transaction.id}>
+              <TransactionRow transaction={transaction} />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

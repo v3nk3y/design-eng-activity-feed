@@ -23,3 +23,10 @@
 .activity-feed__list li + li {
   border-top: 1px solid var(--line);
 }
+
+.activity-feed__empty {
+  margin: 0;
+  padding: 32px 16px;
+  color: var(--muted);
+  text-align: center;
+}
