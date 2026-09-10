@@ -29,27 +29,39 @@ export function TransactionDetail({ transaction, onClose }: TransactionDetailPro
           {transaction && (
             <>
               <header className='detail-panel__header'>
-                <Dialog.Title className='detail-panel__title'>{transaction.merchant}</Dialog.Title>
+                <div>
+                  <p className='detail-panel__eyebrow'>Transaction details</p>
+                  <Dialog.Title className='detail-panel__title'>{transaction.merchant}</Dialog.Title>
+                </div>
                 <Dialog.Close className='detail-panel__close' aria-label='Close'>
                   &times;
                 </Dialog.Close>
               </header>
 
               <div className='detail-panel__body'>
-                {transaction.failureReason && (
-                  <p className='detail-panel__failure'>{transaction.failureReason}</p>
-                )}
+                <div className='detail-panel__summary'>
+                  {transaction.failureReason && (
+                    <p className='detail-panel__failure'>{transaction.failureReason}</p>
+                  )}
 
-                <div className='detail-panel__hero'>
-                  <p className={`detail-panel__amount detail-panel__amount--${amountTone(transaction)}`}>
-                    {formatAmount(transaction.amount)}
-                  </p>
-                  {transaction.status !== 'posted' && <StatusBadge status={transaction.status} />}
+                  <div className='detail-panel__hero'>
+                    <p className={`detail-panel__amount detail-panel__amount--${amountTone(transaction)}`}>
+                      {formatAmount(transaction.amount)}
+                    </p>
+                    {transaction.status !== 'posted' && <StatusBadge status={transaction.status} />}
+                  </div>
+
+                  <Dialog.Description className='detail-panel__description'>
+                    {transaction.description}
+                  </Dialog.Description>
+
+                  {transaction.memo && (
+                    <div className='detail-panel__memo'>
+                      <p className='detail-panel__memo-label'>Memo</p>
+                      <p className='detail-panel__memo-text'>{transaction.memo}</p>
+                    </div>
+                  )}
                 </div>
-
-                <Dialog.Description className='detail-panel__description'>
-                  {transaction.description}
-                </Dialog.Description>
 
                 <dl className='detail-panel__facts'>
                   <dt>Type</dt>
@@ -77,12 +89,6 @@ export function TransactionDetail({ transaction, onClose }: TransactionDetailPro
                     </>
                   )}
 
-                  {transaction.memo && (
-                    <>
-                      <dt>Memo</dt>
-                      <dd>{transaction.memo}</dd>
-                    </>
-                  )}
                 </dl>
               </div>
 
