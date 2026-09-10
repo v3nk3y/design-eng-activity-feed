@@ -1,6 +1,8 @@
+import { useMemo, useState } from 'react';
 import './ActivityFeed.css';
 import type { Transaction } from '../../types/transaction';
 import { sortNewestFirst } from '../../utils/transactions';
+import { TransactionDetail } from '../TransactionDetail/TransactionDetail';
 import { TransactionRow } from './TransactionRow';
 
 type ActivityFeedProps = {
@@ -8,7 +10,10 @@ type ActivityFeedProps = {
 };
 
 export function ActivityFeed({ transactions }: ActivityFeedProps) {
-  const sorted = sortNewestFirst(transactions);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  const sorted = useMemo(() => sortNewestFirst(transactions), [transactions]);
+  const selected = transactions.find((transaction) => transaction.id === selectedId);
 
   return (
     <div className='activity-feed'>
@@ -20,11 +25,13 @@ export function ActivityFeed({ transactions }: ActivityFeedProps) {
         <ul className='activity-feed__list'>
           {sorted.map((transaction) => (
             <li key={transaction.id}>
-              <TransactionRow transaction={transaction} />
+              <TransactionRow transaction={transaction} onSelect={setSelectedId} />
             </li>
           ))}
         </ul>
       )}
+
+      <TransactionDetail transaction={selected} onClose={() => setSelectedId(null)} />
     </div>
   );
 }

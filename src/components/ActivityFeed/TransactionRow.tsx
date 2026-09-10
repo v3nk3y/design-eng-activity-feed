@@ -5,9 +5,10 @@ import { amountTone, formatAmount, formatFeedDate, serializeFeedDate } from '../
 
 type TransactionRowProps = {
   transaction: TransactionSummary
+  onSelect: (id: string) => void
 }
 
-export function TransactionRow({ transaction }: TransactionRowProps) {
+export function TransactionRow({ transaction, onSelect }: TransactionRowProps) {
   const dateText = formatFeedDate(transaction.date)
   const dateTime = serializeFeedDate(transaction.date)
 
@@ -15,7 +16,7 @@ export function TransactionRow({ transaction }: TransactionRowProps) {
     <button
       type='button'
       className='transaction-row'
-      onClick={() => alert(`Transaction: ${transaction.id}`)}
+      onClick={() => onSelect(transaction.id)}
     >
       <span className='transaction-row__main'>
         <span className='transaction-row__merchant'>{transaction.merchant}</span>
