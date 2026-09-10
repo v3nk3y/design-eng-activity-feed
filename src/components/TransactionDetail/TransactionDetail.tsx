@@ -36,6 +36,10 @@ export function TransactionDetail({ transaction, onClose }: TransactionDetailPro
               </header>
 
               <div className='detail-panel__body'>
+                {transaction.failureReason && (
+                  <p className='detail-panel__failure'>{transaction.failureReason}</p>
+                )}
+
                 <div className='detail-panel__hero'>
                   <p className={`detail-panel__amount detail-panel__amount--${amountTone(transaction)}`}>
                     {formatAmount(transaction.amount)}

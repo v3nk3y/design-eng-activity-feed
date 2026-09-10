@@ -60,6 +60,14 @@
   padding: 16px;
 }
 
+.detail-panel__failure {
+  margin: 0 0 16px;
+  padding: 12px;
+  color: var(--danger);
+  background: var(--danger-bg);
+  border-radius: 8px;
+}
+
 .detail-panel__hero {
   display: flex;
   align-items: center;
