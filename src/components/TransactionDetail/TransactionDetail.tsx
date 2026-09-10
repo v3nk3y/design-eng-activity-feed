@@ -85,6 +85,27 @@ export function TransactionDetail({ transaction, onClose }: TransactionDetailPro
                   )}
                 </dl>
               </div>
+
+              <footer className='detail-panel__footer'>
+                {transaction.status !== 'posted' && (
+                  <p className='detail-panel__eligibility' id='dispute-eligibility'>
+                    Only posted transactions can be disputed.
+                  </p>
+                )}
+
+                <div className='detail-panel__actions'>
+                  <button
+                    type='button'
+                    className='detail-panel__dispute'
+                    disabled={transaction.status !== 'posted'}
+                    aria-describedby={transaction.status === 'posted' ? undefined : 'dispute-eligibility'}
+                  >
+                    Dispute transaction
+                  </button>
+
+                  <Dialog.Close className='detail-panel__dismiss'>Close</Dialog.Close>
+                </div>
+              </footer>
             </>
           )}
         </Dialog.Content>
