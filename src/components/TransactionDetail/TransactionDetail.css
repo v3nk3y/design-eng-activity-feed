@@ -53,3 +53,40 @@
 .detail-panel__close:focus-visible {
   outline: 2px solid var(--focus);
 }
+
+.detail-panel__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.detail-panel__hero {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.detail-panel__amount {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-panel__amount--debit {
+  color: var(--text);
+}
+
+.detail-panel__amount--credit {
+  color: var(--credit);
+}
+
+.detail-panel__amount--failed {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.detail-panel__description {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
